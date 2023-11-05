@@ -52,9 +52,34 @@
                         <td>{{d.username}}</td>
                         <td>{{d.nombre}}</td>
                         <td>{{d.pass}}</td>
-                        <td><button class="btn btn-primary btn-sm" id="">Editar</button></td>
-                        <td><a href="#" class="btn btn-danger btn-sm">Eliminar</a></td>
+                        <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id}}" data-bs-toggle="modal" data-bs-target="#modal{{d.id}}">Editar</button></td>
+                        <td><a href="{{url_for('delete', id=d.id)}}" class="btn btn-danger btn-sm">Eliminar</a></td>
                     </tr>
+                    
+                    <!--Modal-->
+                    <div class="modal fade" id="modal{{d.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">{{d.username}}</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/edit/{{d.id}}" method="post">
+                                    <label>Usuario</label>
+                                    <input type="text" class="form-control mb-3" name="username" value="{{d.username}}">
+                                    <label>Nombre</label>
+                                    <input type="text" class="form-control mb-3" name="nombre" value="{{d.nombre}}">
+                                    <label>Contraseña</label>
+                                    <input type="text" class="form-control mb-3" name="pass" value="{{d.pass}}">         
+                                        <div class="modal-footer">              
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        </div>
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                     {% endfor %}
                 </tbody>
             </table>

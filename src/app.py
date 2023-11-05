@@ -35,5 +35,29 @@ def addUser():
         cn.database.commit()
         return redirect(url_for('home'))
 
+#Borrar Usuarios en DataBase
+@app.route('/delete/<string:id>')
+def delete (id):
+    cursor = cn.database.cursor()
+    sql = "DELETE FROM users WHERE id=%s"
+    data = (id,)
+    cursor.execute(sql,data)
+    cn.database.commit()
+    return redirect(url_for('home'))
+
+#Editar Usuarios en DataBase
+@app.route('/edit/<string:id>', methods=['POST'])
+def edit(id):
+    username = request.form['username']
+    nombre = request.form['nombre']
+    password = request.form['pass']
+    if username and nombre and password: 
+        cursor = cn.database.cursor()
+        sql = "UPDATE users SET username = %s, nombre = %s , pass = %s WHERE id = %s"
+        data = (username,nombre,password, id)
+        cursor.execute(sql, data)
+        cn.database.commit()
+    return redirect(url_for('home'))
+
 if __name__ == '__main__':
     app.run(debug=True, port=4000)
