@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <h1 class="text-center mt-5 nb-5 text-primary">Python-Flash-MySQL</h1>
+     <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <form action="" method="POST">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label>Usuario</label>
+                            <input type="text" class="form-control mb 3" name="username">
+                        </div>
+                        <div class="col">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control mb 3" name="nombre">
+                        </div>
+                        <div class="col">
+                            <label>Contraseña</label>
+                            <input type="password" class="form-control mb 3" name="pass">
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary mb-3 mt-4" type="submit">
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!--Tabla-->
+                <table class="table table-bordered">
+                    <thead>
+                        <th scope="col">#</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Contraseña</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Borrar</th>
+                    </thead>
+                
+                <tbody>
+                    {% for d in data %}
+                    <tr>
+                        <td>{{d.id}}</td>
+                        <td>{{d.username}}</td>
+                        <td>{{d.nombre}}</td>
+                        <td>{{d.pass}}</td>
+                        <td><button class="btn btn-primary btn-sm" id="">Editar</button></td>
+                        <td><a href="#" class="btn btn-danger btn-sm">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+     </div>
+
+</body>
+</html>
